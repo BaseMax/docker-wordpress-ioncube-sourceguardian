@@ -1,0 +1,20 @@
+services:
+  wordpress:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - 'wordpress-files:/var/www/html'
+    environment:
+      - SERVICE_FQDN_WORDPRESS
+      - WORDPRESS_DB_HOST=mariadb
+      - WORDPRESS_DB_USER=$SERVICE_USER_WORDPRESS
+      - WORDPRESS_DB_PASSWORD=$SERVICE_PASSWORD_WORDPRESS
+      - WORDPRESS_DB_NAME=wordpress
+    depends_on:
+      - mariadb
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://127.0.0.1']
+      interval: 2s
+      timeout: 10s
+      retries: 10

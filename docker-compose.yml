@@ -10,10 +10,6 @@ services:
       WORDPRESS_DB_USER: $SERVICE_USER_WORDPRESS
       WORDPRESS_DB_PASSWORD: $SERVICE_PASSWORD_WORDPRESS
       WORDPRESS_DB_NAME: wordpress
-      COOLIFY_RESOURCE_UUID: xg4c44cgg8ok0cc4c0k8c448
-      COOLIFY_CONTAINER_NAME: wordpress-xg4c44cgg8ok0cc4c0k8c448
-      COOLIFY_URL: 'https://test.mrp30.com'
-      COOLIFY_FQDN: test.mrp30.com
     depends_on:
       - mariadb
     healthcheck:
@@ -28,19 +24,6 @@ services:
     container_name: wordpress-xg4c44cgg8ok0cc4c0k8c448
     restart: unless-stopped
     labels:
-      - coolify.managed=true
-      - coolify.version=4.0.0-beta.420.6
-      - coolify.serviceId=4
-      - coolify.type=service
-      - coolify.name=wordpress-xg4c44cgg8ok0cc4c0k8c448
-      - coolify.resourceName=wordpress-with-mariadb-xg4c44cgg8ok0cc4c0k8c448
-      - coolify.projectName=testmrp30
-      - coolify.serviceName=wordpress
-      - coolify.environmentName=production
-      - coolify.pullRequestId=0
-      - coolify.service.subId=4
-      - coolify.service.subType=application
-      - coolify.service.subName=wordpress
       - traefik.enable=true
       - traefik.http.middlewares.gzip.compress=true
       - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
@@ -70,8 +53,6 @@ services:
       MYSQL_DATABASE: wordpress
       MYSQL_USER: $SERVICE_USER_WORDPRESS
       MYSQL_PASSWORD: $SERVICE_PASSWORD_WORDPRESS
-      COOLIFY_RESOURCE_UUID: xg4c44cgg8ok0cc4c0k8c448
-      COOLIFY_CONTAINER_NAME: mariadb-xg4c44cgg8ok0cc4c0k8c448
     healthcheck:
       test:
         - CMD
@@ -83,20 +64,6 @@ services:
       retries: 10
     container_name: mariadb-xg4c44cgg8ok0cc4c0k8c448
     restart: unless-stopped
-    labels:
-      - coolify.managed=true
-      - coolify.version=4.0.0-beta.420.6
-      - coolify.serviceId=4
-      - coolify.type=service
-      - coolify.name=mariadb-xg4c44cgg8ok0cc4c0k8c448
-      - coolify.resourceName=wordpress-with-mariadb-xg4c44cgg8ok0cc4c0k8c448
-      - coolify.projectName=testmrp30
-      - coolify.serviceName=mariadb
-      - coolify.environmentName=production
-      - coolify.pullRequestId=0
-      - coolify.service.subId=4
-      - coolify.service.subType=database
-      - coolify.service.subName=mariadb
     networks:
       xg4c44cgg8ok0cc4c0k8c448: null
 volumes:

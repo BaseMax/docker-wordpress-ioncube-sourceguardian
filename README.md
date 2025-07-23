@@ -105,6 +105,7 @@ Both services include built-in healthchecks for stability:
 * **MariaDB**: via `healthcheck.sh --connect --innodb_initialized`
 
 ---
+
 ## Build Docker
 
 ```bash

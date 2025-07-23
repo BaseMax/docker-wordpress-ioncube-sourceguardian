@@ -2,7 +2,7 @@
 
 A ready-to-use Docker environment for running WordPress (PHP 8.1) with **ionCube** and **SourceGuardian** loaders pre-installed, plus a wide range of helpful PHP extensions and CLI tools.
 
-> Built and maintained by [BaseMax](https://github.com/BaseMax) — © 2025, MIT Licensed
+> Built and maintained by [BaseMax](https://github.com/BaseMax) © 2025, MIT Licensed
 
 ---
 

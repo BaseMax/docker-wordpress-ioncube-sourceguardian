@@ -2,19 +2,111 @@ services:
   wordpress:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: .Dockerfile
     volumes:
-      - 'wordpress-files:/var/www/html'
+      - 'xg4c44cgg8ok0cc4c0k8c448_wordpress-files:/var/www/html'
     environment:
-      - SERVICE_FQDN_WORDPRESS
-      - WORDPRESS_DB_HOST=mariadb
-      - WORDPRESS_DB_USER=$SERVICE_USER_WORDPRESS
-      - WORDPRESS_DB_PASSWORD=$SERVICE_PASSWORD_WORDPRESS
-      - WORDPRESS_DB_NAME=wordpress
+      WORDPRESS_DB_HOST: mariadb
+      WORDPRESS_DB_USER: $SERVICE_USER_WORDPRESS
+      WORDPRESS_DB_PASSWORD: $SERVICE_PASSWORD_WORDPRESS
+      WORDPRESS_DB_NAME: wordpress
+      COOLIFY_RESOURCE_UUID: xg4c44cgg8ok0cc4c0k8c448
+      COOLIFY_CONTAINER_NAME: wordpress-xg4c44cgg8ok0cc4c0k8c448
+      COOLIFY_URL: 'https://test.mrp30.com'
+      COOLIFY_FQDN: test.mrp30.com
     depends_on:
       - mariadb
     healthcheck:
-      test: ['CMD', 'curl', '-f', 'http://127.0.0.1']
+      test:
+        - CMD
+        - curl
+        - '-f'
+        - 'http://127.0.0.1'
       interval: 2s
       timeout: 10s
       retries: 10
+    container_name: wordpress-xg4c44cgg8ok0cc4c0k8c448
+    restart: unless-stopped
+    labels:
+      - coolify.managed=true
+      - coolify.version=4.0.0-beta.420.6
+      - coolify.serviceId=4
+      - coolify.type=service
+      - coolify.name=wordpress-xg4c44cgg8ok0cc4c0k8c448
+      - coolify.resourceName=wordpress-with-mariadb-xg4c44cgg8ok0cc4c0k8c448
+      - coolify.projectName=testmrp30
+      - coolify.serviceName=wordpress
+      - coolify.environmentName=production
+      - coolify.pullRequestId=0
+      - coolify.service.subId=4
+      - coolify.service.subType=application
+      - coolify.service.subName=wordpress
+      - traefik.enable=true
+      - traefik.http.middlewares.gzip.compress=true
+      - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
+      - traefik.http.routers.http-0-xg4c44cgg8ok0cc4c0k8c448-wordpress.entryPoints=http
+      - traefik.http.routers.http-0-xg4c44cgg8ok0cc4c0k8c448-wordpress.middlewares=redirect-to-https
+      - 'traefik.http.routers.http-0-xg4c44cgg8ok0cc4c0k8c448-wordpress.rule=Host(`test.mrp30.com`) && PathPrefix(`/`)'
+      - traefik.http.routers.https-0-xg4c44cgg8ok0cc4c0k8c448-wordpress.entryPoints=https
+      - traefik.http.routers.https-0-xg4c44cgg8ok0cc4c0k8c448-wordpress.middlewares=gzip
+      - 'traefik.http.routers.https-0-xg4c44cgg8ok0cc4c0k8c448-wordpress.rule=Host(`test.mrp30.com`) && PathPrefix(`/`)'
+      - traefik.http.routers.https-0-xg4c44cgg8ok0cc4c0k8c448-wordpress.tls.certresolver=letsencrypt
+      - traefik.http.routers.https-0-xg4c44cgg8ok0cc4c0k8c448-wordpress.tls=true
+      - 'caddy_0.encode=zstd gzip'
+      - 'caddy_0.handle_path.0_reverse_proxy={{upstreams}}'
+      - 'caddy_0.handle_path=/*'
+      - caddy_0.header=-Server
+      - 'caddy_0.try_files={path} /index.html /index.php'
+      - 'caddy_0=https://test.mrp30.com'
+      - caddy_ingress_network=xg4c44cgg8ok0cc4c0k8c448
+    networks:
+      xg4c44cgg8ok0cc4c0k8c448: null
+  mariadb:
+    image: 'mariadb:11'
+    volumes:
+      - 'xg4c44cgg8ok0cc4c0k8c448_mariadb-data:/var/lib/mysql'
+    environment:
+      MYSQL_ROOT_PASSWORD: $SERVICE_PASSWORD_ROOT
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: $SERVICE_USER_WORDPRESS
+      MYSQL_PASSWORD: $SERVICE_PASSWORD_WORDPRESS
+      COOLIFY_RESOURCE_UUID: xg4c44cgg8ok0cc4c0k8c448
+      COOLIFY_CONTAINER_NAME: mariadb-xg4c44cgg8ok0cc4c0k8c448
+    healthcheck:
+      test:
+        - CMD
+        - healthcheck.sh
+        - '--connect'
+        - '--innodb_initialized'
+      interval: 5s
+      timeout: 20s
+      retries: 10
+    container_name: mariadb-xg4c44cgg8ok0cc4c0k8c448
+    restart: unless-stopped
+    labels:
+      - coolify.managed=true
+      - coolify.version=4.0.0-beta.420.6
+      - coolify.serviceId=4
+      - coolify.type=service
+      - coolify.name=mariadb-xg4c44cgg8ok0cc4c0k8c448
+      - coolify.resourceName=wordpress-with-mariadb-xg4c44cgg8ok0cc4c0k8c448
+      - coolify.projectName=testmrp30
+      - coolify.serviceName=mariadb
+      - coolify.environmentName=production
+      - coolify.pullRequestId=0
+      - coolify.service.subId=4
+      - coolify.service.subType=database
+      - coolify.service.subName=mariadb
+    networks:
+      xg4c44cgg8ok0cc4c0k8c448: null
+volumes:
+  xg4c44cgg8ok0cc4c0k8c448_wordpress-files:
+    name: xg4c44cgg8ok0cc4c0k8c448_wordpress-files
+  xg4c44cgg8ok0cc4c0k8c448_mariadb-data:
+    name: xg4c44cgg8ok0cc4c0k8c448_mariadb-data
+networks:
+  xg4c44cgg8ok0cc4c0k8c448:
+    name: xg4c44cgg8ok0cc4c0k8c448
+    external: true
+configs: {  }
+secrets: {  }

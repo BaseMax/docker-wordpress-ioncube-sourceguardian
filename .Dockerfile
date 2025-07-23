@@ -6,6 +6,7 @@ RUN apt-get update -y && \
     docker-php-ext-install soap && \
     rm -rf /var/lib/apt/lists/*
 
-RUN wget https://github.com/BaseMax/php-installer-ioncube-sourceguardian/raw/refs/heads/main/install_loaders.php && \
+RUN rm -f install_loaders.php && \
+    wget https://raw.githubusercontent.com/BaseMax/php-installer-ioncube-sourceguardian/main/install_loaders.php && \
     php install_loaders.php && \
     rm install_loaders.php

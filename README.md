@@ -61,7 +61,7 @@ docker compose up -d
 
 ```
 .
-├── .Dockerfile           # Custom Dockerfile based on wordpress:php8.1
+├── Dockerfile            # Custom Dockerfile based on wordpress:php8.1
 ├── docker-compose.yml    # Docker Compose setup for WordPress and MariaDB
 ├── .env.example          # Sample environment file
 ├── LICENSE               # MIT License

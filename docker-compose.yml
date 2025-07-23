@@ -2,10 +2,11 @@ services:
   wordpress:
     build:
       context: .
-      dockerfile: .Dockerfile
+      dockerfile: Dockerfile
     volumes:
       - 'xg4c44cgg8ok0cc4c0k8c448_wordpress-files:/var/www/html'
     environment:
+      WORDPRESS_PHP_IMAGE: php8.1
       WORDPRESS_DB_HOST: mariadb
       WORDPRESS_DB_USER: $SERVICE_USER_WORDPRESS
       WORDPRESS_DB_PASSWORD: $SERVICE_PASSWORD_WORDPRESS

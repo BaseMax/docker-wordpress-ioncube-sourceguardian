@@ -74,6 +74,5 @@ volumes:
 networks:
   xg4c44cgg8ok0cc4c0k8c448:
     name: xg4c44cgg8ok0cc4c0k8c448
-    external: true
 configs: {  }
 secrets: {  }

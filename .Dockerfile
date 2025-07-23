@@ -2,11 +2,20 @@
 FROM wordpress:php8.1
 
 RUN apt-get update -y && \
-    apt-get install -y wget curl libxml2-dev nano zip unzip htop screenfetch neofetch && \
-    docker-php-ext-install soap && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get install -y \
+    wget curl libxml2-dev nano zip unzip htop screenfetch neofetch \
+    libzip-dev libpng-dev libjpeg-dev libfreetype6-dev libonig-dev \
+    libssl-dev libcurl4-openssl-dev libicu-dev libreadline-dev \
+    vim less lsof net-tools dnsutils iputils-ping git iproute2 \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install \
+    zip gd intl mysqli pdo_mysql mbstring curl bcmath exif soap opcache \
+    && pecl install mcrypt xdebug redis \
+    && docker-php-ext-enable mcrypt xdebug redis \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN rm -f install_loaders.php && \
-    wget https://raw.githubusercontent.com/BaseMax/php-installer-ioncube-sourceguardian/main/install_loaders.php && \
-    php install_loaders.php && \
-    rm install_loaders.php
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
+    chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
+
+RUN wget https://raw.githubusercontent.com/BaseMax/php-installer-ioncube-sourceguardian/main/install_loaders.php && \
+    php install_loaders.php && rm install_loaders.php

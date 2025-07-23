@@ -115,6 +115,11 @@ docker build --build-arg WORDPRESS_PHP_IMAGE=php8.1 -t basemax/wordpress-ioncube
 docker build --build-arg WORDPRESS_PHP_IMAGE=php8.2 -t basemax/wordpress-ioncube-sourceguardian:8.2 .
 docker build --build-arg WORDPRESS_PHP_IMAGE=php8.3 -t basemax/wordpress-ioncube-sourceguardian:8.3 .
 docker build --build-arg WORDPRESS_PHP_IMAGE=php8.4 -t basemax/wordpress-ioncube-sourceguardian:8.4 .
+docker push basemax/wordpress-ioncube-sourceguardian:7.4
+docker push basemax/wordpress-ioncube-sourceguardian:8.1
+docker push basemax/wordpress-ioncube-sourceguardian:8.2
+docker push basemax/wordpress-ioncube-sourceguardian:8.3
+docker push basemax/wordpress-ioncube-sourceguardian:8.4
 ```
 
 ---

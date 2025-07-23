@@ -14,6 +14,12 @@ RUN apt-get update -y && \
     && rm -rf /var/lib/apt/lists/*
 
 RUN echo "memory_limit = 4G" > /usr/local/etc/php/conf.d/memory-limit.ini
+RUN echo "upload_max_filesize = 512M" >> /usr/local/etc/php/conf.d/memory-limit.ini
+RUN echo "post_max_size = 1024M" >> /usr/local/etc/php/conf.d/memory-limit.ini
+RUN echo "max_execution_time = 90000" >> /usr/local/etc/php/conf.d/memory-limit.ini
+RUN echo "max_input_time = 300" >> /usr/local/etc/php/conf.d/memory-limit.ini
+RUN echo "max_input_vars = 5000" >> /usr/local/etc/php/conf.d/memory-limit.ini
+RUN echo "max_file_uploads = 50" >> /usr/local/etc/php/conf.d/memory-limit.ini
 
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
     chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp

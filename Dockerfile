@@ -8,9 +8,7 @@ RUN apt-get update -y && \
     libzip-dev libpng-dev libjpeg-dev libfreetype6-dev libonig-dev \
     libssl-dev libcurl4-openssl-dev libicu-dev libreadline-dev \
     vim less lsof net-tools dnsutils iputils-ping git iproute2 \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install \
-    zip gd intl mysqli pdo_mysql mbstring curl bcmath exif soap \
+    && docker-php-ext-install zip intl pdo_mysql mbstring curl soap \
     && pecl install mcrypt xdebug redis \
     && docker-php-ext-enable mcrypt xdebug redis \
     && rm -rf /var/lib/apt/lists/*

@@ -8,10 +8,11 @@ A ready-to-use Docker environment for running WordPress (PHP 8.1) with **ionCube
 
 ## 🧩 Features
 
-* WordPress with PHP 8.1 (custom Dockerfile)
+* PHP Composer
+* WordPress with PHP 7.4, 8.1, 8.2, 8.3, 8.4 (custom Dockerfile)
 * **ionCube Loader** and **SourceGuardian** auto-installed
 * Common PHP extensions: `mysqli`, `pdo_mysql`, `intl`, `mbstring`, `gd`, `bcmath`, `soap`, etc.
-* Popular PECL extensions: `mcrypt`, `xdebug`, `redis`
+* Popular PECL extensions: `redis`
 * Useful CLI tools: `wp-cli`, `htop`, `nano`, `curl`, `git`, `ping`, and more
 * Fully dockerized using `docker-compose`
 * Includes MariaDB 11 with persistent volumes

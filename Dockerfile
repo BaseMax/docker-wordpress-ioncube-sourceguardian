@@ -1,4 +1,5 @@
 # https://github.com/docker-library/wordpress/blob/6b67cd46375883e2e25d218736ce936f93aca3b2/latest/php8.1/apache/Dockerfile
+ARG WORDPRESS_PHP_IMAGE=php8.1
 FROM wordpress:${WORDPRESS_PHP_IMAGE}
 
 RUN apt-get update -y && \

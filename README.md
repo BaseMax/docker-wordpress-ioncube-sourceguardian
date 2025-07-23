@@ -110,7 +110,7 @@ Both services include built-in healthchecks for stability:
 
 ```bash
 docker login
-docker build --build-arg WORDPRESS_PHP_IMAGE=php8.0 -t basemax/wordpress-ioncube-sourceguardian:8.0 .
+docker build --build-arg WORDPRESS_PHP_IMAGE=php7.4 -t basemax/wordpress-ioncube-sourceguardian:7.4 .
 docker build --build-arg WORDPRESS_PHP_IMAGE=php8.1 -t basemax/wordpress-ioncube-sourceguardian:8.1 .
 docker build --build-arg WORDPRESS_PHP_IMAGE=php8.2 -t basemax/wordpress-ioncube-sourceguardian:8.2 .
 docker build --build-arg WORDPRESS_PHP_IMAGE=php8.3 -t basemax/wordpress-ioncube-sourceguardian:8.3 .

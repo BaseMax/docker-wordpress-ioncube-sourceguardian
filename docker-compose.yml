@@ -23,25 +23,6 @@ services:
       retries: 10
     container_name: wordpress-xg4c44cgg8ok0cc4c0k8c448
     restart: unless-stopped
-    labels:
-      - traefik.enable=true
-      - traefik.http.middlewares.gzip.compress=true
-      - traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https
-      - traefik.http.routers.http-0-xg4c44cgg8ok0cc4c0k8c448-wordpress.entryPoints=http
-      - traefik.http.routers.http-0-xg4c44cgg8ok0cc4c0k8c448-wordpress.middlewares=redirect-to-https
-      - 'traefik.http.routers.http-0-xg4c44cgg8ok0cc4c0k8c448-wordpress.rule=Host(`test.mrp30.com`) && PathPrefix(`/`)'
-      - traefik.http.routers.https-0-xg4c44cgg8ok0cc4c0k8c448-wordpress.entryPoints=https
-      - traefik.http.routers.https-0-xg4c44cgg8ok0cc4c0k8c448-wordpress.middlewares=gzip
-      - 'traefik.http.routers.https-0-xg4c44cgg8ok0cc4c0k8c448-wordpress.rule=Host(`test.mrp30.com`) && PathPrefix(`/`)'
-      - traefik.http.routers.https-0-xg4c44cgg8ok0cc4c0k8c448-wordpress.tls.certresolver=letsencrypt
-      - traefik.http.routers.https-0-xg4c44cgg8ok0cc4c0k8c448-wordpress.tls=true
-      - 'caddy_0.encode=zstd gzip'
-      - 'caddy_0.handle_path.0_reverse_proxy={{upstreams}}'
-      - 'caddy_0.handle_path=/*'
-      - caddy_0.header=-Server
-      - 'caddy_0.try_files={path} /index.html /index.php'
-      - 'caddy_0=https://test.mrp30.com'
-      - caddy_ingress_network=xg4c44cgg8ok0cc4c0k8c448
     networks:
       xg4c44cgg8ok0cc4c0k8c448: null
   mariadb:

@@ -9,8 +9,9 @@ RUN apt-get update -y && \
     libssl-dev libcurl4-openssl-dev libicu-dev libreadline-dev \
     vim less lsof net-tools dnsutils iputils-ping git iproute2 \
     && docker-php-ext-install zip intl pdo_mysql mbstring curl soap \
-    && pecl install mcrypt xdebug redis \
-    && docker-php-ext-enable mcrypt xdebug redis \
+    && pecl install mcrypt redis \
+    && docker-php-ext-enable redis \
+    && echo "extension=mcrypt.so" > /usr/local/etc/php/conf.d/mcrypt.ini \
     && rm -rf /var/lib/apt/lists/*
 
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \

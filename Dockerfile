@@ -7,7 +7,7 @@ FROM wordpress:${WORDPRESS_PHP_IMAGE}
 
 RUN apt-get update -y && \
     apt-get install -y \
-    wget sudo curl libxml2-dev nano zip unzip htop screenfetch neofetch \
+    wget sudo curl libxml2-dev nano zip unzip htop screenfetch \
     libzip-dev libpng-dev libjpeg-dev libfreetype6-dev libonig-dev \
     libssl-dev libcurl4-openssl-dev libicu-dev libreadline-dev \
     vim less lsof net-tools dnsutils iputils-ping git iproute2 \
